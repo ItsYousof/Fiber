@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fiber"
+version = "0.1.0"
+description = "AI-powered CLI assistant"
+requires-python = ">=3.8"
+dependencies = [
+    "click>=8.0.0",
+    "rich>=10.0.0",
+    "requests>=2.0.0",
+    "python-dotenv>=0.19.0",
+    "beautifulsoup4>=4.9.0",
+    "trafilatura>=1.6.1",
+    "prompt-toolkit>=3.0.0",
+    "lxml>=4.9.0",
+    "pytz>=2023.3",
+    "psutil>=5.9.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "isort>=5.0.0",
+    "flake8>=4.0.0",
+    "mypy>=1.0.0"
+]
+
+[project.scripts]
+fiber = "fiber.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
+]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=fiber"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
